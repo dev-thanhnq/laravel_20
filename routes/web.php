@@ -99,3 +99,65 @@ Route::group([
         echo 'task/reset/3';
     })->name('todo.task.reset');
 });
+
+Route::get('/hello1', function (){
+    return view('hello1');
+});
+
+Route::get('/hello2', function (){
+    return view('hello2');
+});
+
+Route::group([
+    'prefix' => 'tasks'
+], function () {
+    Route::get('/create', function (){
+        return view('tasks.create');
+    })->name('tasks.create');
+
+    Route::get('/edit', function (){
+        $name = 'Hoc lap trinh';
+        return view('tasks.edit', [
+            'name' => $name
+        ]);
+    })->name('tasks.edit');
+
+    Route::get('/list', function (){
+        return view('tasks.list', [
+            'records' => [
+                1, 2, 3
+            ],
+            'i' => 1
+        ]);
+    })->name('tasks.list');
+});
+
+Route::get('/profile', function (){
+
+    return view('profile', [
+        'name' => 'Nguyễn Quang Thành',
+        'birth' => '20 - 01 - 2000',
+        'school' => 'KMA',
+        'home' => 'Hoài Đức - Hà Nội'
+    ]);
+});
+
+Route::get('/list', function (){
+    $list = [
+        [
+            'name' => 'Học View trong Laravel',
+            'status' => 0
+        ],
+        [
+            'name' => 'Học Route trong Laravel',
+            'status' => 1
+        ],
+        [
+            'name' => 'Làm bài tập View trong Laravel',
+            'status' => 2
+        ],
+    ];
+    return view('list', [
+        'list' => $list
+    ]);
+});
