@@ -29,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
             'Danh sach'
         ];
         View::share('menu', $menu);
+
+        $list = [1, 1, 0];
+        View::share('list', $list);
     }
 }
