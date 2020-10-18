@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,8 +15,10 @@ class TaskController extends Controller
      */
     public function index()
     {
+        $tasks = Task::all();
         return view('home', [
-            'id' => 1
+            'id' => 1,
+            'tasks' => $tasks
         ]);
     }
 
@@ -50,7 +53,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::find($id);
+        dd($task->name);
     }
 
     /**

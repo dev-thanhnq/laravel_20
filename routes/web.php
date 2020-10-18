@@ -164,6 +164,8 @@ Route::group([
 
     Route::post('/store', [\App\Http\Controllers\Frontend\TaskController::class, 'store'])->name('task.store');
 
+    Route::get('/{id}', [\App\Http\Controllers\Frontend\TaskController::class, 'show'])->name('task.show');
+
     Route::get('/{id}/edit', [\App\Http\Controllers\Frontend\TaskController::class, 'edit'])->name('task.edit');
 
     Route::delete('/destroy/{id?}', [\App\Http\Controllers\Frontend\TaskController::class, 'destroy'])->name('task.destroy');

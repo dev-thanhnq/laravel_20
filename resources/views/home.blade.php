@@ -49,124 +49,32 @@
                         <th>&nbsp;</th>
                         </thead>
                         <tbody>
-{{--                        @foreach($list as $key => $work)--}}
-{{--                            <tr>--}}
-{{--                                <td class="table-text">--}}
-{{--                                    <div>--}}
-{{--                                        @if($work == 1)--}}
-{{--                                            Làm bài tập Laravel--}}
-{{--                                        @elseif($work == 0)--}}
-{{--                                            <strike>Làm bài tập Laravel</strike>--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </td>--}}
-{{--                                <!-- Task Complete Button -->--}}
-{{--                                <td>--}}
-{{--                                    <a href="{{ route('task.complete') . '/' . $key }}" type="submit" class="btn btn-success">--}}
-{{--                                        @if($work == 1)--}}
-{{--                                            <i class="fa fa-btn fa-check"></i>Hoàn thành--}}
-{{--                                        @elseif($work == 0)--}}
-{{--                                            <i class="fa fa-btn fa-refresh"></i>Làm lại--}}
-{{--                                        @endif--}}
-{{--                                    </a>--}}
-{{--                                </td>--}}
-{{--                                <!-- Task Delete Button -->--}}
-{{--                                <td>--}}
-{{--                                    <form action="{{ route('task.destroy') . '/' . $key }}" method="POST">--}}
-{{--                                        {{ csrf_field() }}--}}
-{{--                                        {{ method_field('DELETE') }}--}}
+                        @foreach($tasks as $task)
+                            <tr>
+                                <td class="table-text">
+                                    <div>
+                                        {{ $task->name }}
+                                    </div>
+                                </td>
+                                <!-- Task Complete Button -->
+                                <td>
+                                    <a href="{{ route('task.complete') . '/' . '1' }}" type="submit" class="btn btn-success">
+                                        <i class="fa fa-btn fa-check"></i>Hoàn thành
+                                    </a>
+                                </td>
+                                <!-- Task Delete Button -->
+                                <td>
+                                    <form action="{{ route('task.destroy') . '/' . $id }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
 
-{{--                                        <button type="submit" class="btn btn-danger">--}}
-{{--                                            <i class="fa fa-btn fa-trash"></i>Xoá--}}
-{{--                                        </button>--}}
-{{--                                    </form>--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
-{{--                        @endforeach--}}
-                        <tr>
-                            <td class="table-text">
-                                <div>
-                                    @if($list[0] == 1)
-                                        Làm bài tập Laravel
-                                    @elseif($list[0] == 0)
-                                        <strike>Làm bài tập Laravel</strike>
-                                    @endif
-                                </div>
-                            </td>
-                            <!-- Task Complete Button -->
-                            <td>
-                                <a href="{{ route('task.complete') . '/' . '1' }}" type="submit" class="btn btn-success">
-                                    <i class="fa fa-btn fa-check"></i>Hoàn thành
-                                </a>
-                            </td>
-                            <!-- Task Delete Button -->
-                            <td>
-                                <form action="{{ route('task.destroy') . '/' . $id }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-btn fa-trash"></i>Xoá
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="table-text">
-                                <div>
-                                    @if($list[1] == 1)
-                                        Làm bài tập PHP
-                                    @elseif($list[1] == 0)
-                                        <strike>Làm bài tập PHP</strike>
-                                    @endif
-                                </div>
-                            </td>
-                            <!-- Task Complete Button -->
-                            <td>
-                                <a href="{{ route('task.complete') . '/' . '2' }}" type="submit" class="btn btn-success">
-                                    <i class="fa fa-btn fa-check"></i>Hoàn thành
-                                </a>
-                            </td>
-                            <!-- Task Delete Button -->
-                            <td>
-                                <form action="{{ route('task.destroy') . '/' . $id }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-btn fa-trash"></i>Xoá
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="table-text">
-                                <div>
-                                    @if($list[2] == 1)
-                                        Làm project Laravel
-                                    @elseif($list[2] == 0)
-                                        <strike>Làm project Laravel</strike>
-                                    @endif
-                                </div>
-                            </td>
-                            <!-- Task Complete Button -->
-                            <td>
-                                <a href="{{ route('task.reComplete') . '/' . '3' }}" type="submit" class="btn btn-success">
-                                    <i class="fa fa-btn fa-refresh"></i>Làm lại
-                                </a>
-                            </td>
-                            <!-- Task Delete Button -->
-                            <td>
-                                <form action="{{ url('task/3') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-btn fa-trash"></i>Xoá
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-btn fa-trash"></i>Xoá
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
