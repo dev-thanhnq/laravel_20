@@ -16,7 +16,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('home', [
+        return view('tasks.index', [
             'id' => 1,
             'tasks' => $tasks
         ]);
@@ -40,9 +40,14 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $work = $request->except('_token');
-
-        dd($work);
+        $task = new Task();
+        $task->name = $request->name;
+        $task->status = 1;
+        $task->content = $request->taskcontent;
+        $task->priority = $request->priority;
+        $task->deadline = $request->deadline;
+        $task->save();
+        return redirect()->route('task.index');
     }
 
     /**
@@ -54,7 +59,9 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
-        dd($task->name);
+        return view('tasks.show', [
+           'task' => $task
+        ]);
     }
 
     /**
@@ -65,8 +72,9 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
+        $task = Task::find($id);
         return view('tasks.edit', [
-            'name' => 'Làm bài tập Laravel'
+            'task' => $task
         ]);
     }
 
@@ -79,7 +87,14 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        $task->name = $request->get('name');
+        $task->status = 1;
+        $task->content = $request->get('taskcontent');
+        $task->priority = $request->get('priority');
+        $task->deadline = $request->get('deadline');
+        $task->save();
+        return redirect()->route('task.index');
     }
 
     /**
@@ -90,16 +105,24 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        $task = Task::find($id);
+        $task->delete();
+        return redirect()->route('task.index');
     }
 
-    public function complete()
+    public function complete($id)
     {
-
+        $task = Task::find($id);
+        $task->status = 2;
+        $task->save();
+        return redirect()->route('task.index');
     }
 
-    public function reComplete()
+    public function reComplete($id)
     {
-
+        $task = Task::find($id);
+        $task->status = 1;
+        $task->save();
+        return redirect()->route('task.index');
     }
 }

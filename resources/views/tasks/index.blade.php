@@ -14,7 +14,7 @@
                     <!-- New Task Form -->
                     <form action="{{ route('task.create') }}" method="" class="form-horizontal">
                     {{ csrf_field() }}
-                        <!-- Add Task Button -->
+                    <!-- Add Task Button -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <button type="submit" class="btn btn-default">
@@ -47,15 +47,28 @@
                                     </div>
                                 </td>
                                 <!-- Task Complete Button -->
+                                @if($task->status == 1)
+                                    <td>
+                                        <a href="{{ route('task.complete', $task->id) }}" type="submit" class="btn btn-success">
+                                            <i class="fa fa-btn fa-check"></i> Hoàn thành
+                                        </a>
+                                    </td>
+                                @elseif($task->status == 2)
+                                    <td>
+                                        <a href="{{ route('task.reComplete', $task->id) }}" type="submit" class="btn btn-warning">
+                                            <i class="fa fa-btn fa-refresh"></i> Làm lại
+                                        </a>
+                                    </td>
+                                @endif
+                                {{--                                Task update button--}}
                                 <td>
-                                    <a href="{{ route('task.complete') . '/' . $task->id }}" type="submit" class="btn btn-success">
-                                        <i class="fa fa-btn fa-check"></i>Hoàn thành
+                                    <a href="{{ route('task.show') . '/' . $task->id }}" type="submit" class="btn btn-info">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i> Chi tiết
                                     </a>
                                 </td>
-{{--                                Task update button--}}
                                 <td>
-                                    <a href="{{ route('task.complete') . '/' . $task->id }}" type="submit" class="btn btn-success">
-                                        <i class="fa fa-btn fa-check"></i>Hoàn thành
+                                    <a href="{{ route('task.edit', $task->id) }}" type="submit" class="btn btn-primary">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> Cập nhật
                                     </a>
                                 </td>
                                 <!-- Task Delete Button -->
@@ -65,7 +78,7 @@
                                         {{ method_field('DELETE') }}
 
                                         <button type="submit" class="btn btn-danger">
-                                            <i class="fa fa-btn fa-trash"></i>Xoá
+                                            <i class="fa fa-btn fa-trash"></i> Xoá
                                         </button>
                                     </form>
                                 </td>

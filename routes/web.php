@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/', [\App\Http\Controllers\Frontend\TaskController::class, 'index']);
+
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -153,6 +153,8 @@ Route::group([
 //    ]);
 //});
 
+Route::get('/', [\App\Http\Controllers\Frontend\TaskController::class, 'index']);
+
 //Route::resource('frontend/task', Frontend\TaskController::class);
 
 Route::group([
@@ -164,13 +166,15 @@ Route::group([
 
     Route::post('/store', [\App\Http\Controllers\Frontend\TaskController::class, 'store'])->name('task.store');
 
-    Route::get('/{id}', [\App\Http\Controllers\Frontend\TaskController::class, 'show'])->name('task.show');
+    Route::get('/{task?}', [\App\Http\Controllers\Frontend\TaskController::class, 'show'])->name('task.show');
 
-    Route::get('/{id}/edit', [\App\Http\Controllers\Frontend\TaskController::class, 'edit'])->name('task.edit');
+    Route::get('/{task?}/edit', [\App\Http\Controllers\Frontend\TaskController::class, 'edit'])->name('task.edit');
+
+    Route::match(['put', 'patch'], '/{task?}', [\App\Http\Controllers\Frontend\TaskController::class, 'update'])->name('task.update');
 
     Route::delete('/destroy/{id?}', [\App\Http\Controllers\Frontend\TaskController::class, 'destroy'])->name('task.destroy');
 
-    Route::get('/complete/{id?}', [\App\Http\Controllers\Frontend\TaskController::class, 'complete'])->name('task.complete');
+    Route::get('/{id?}/complete', [\App\Http\Controllers\Frontend\TaskController::class, 'complete'])->name('task.complete');
 
-    Route::get('/reComplete/{id?}', [\App\Http\Controllers\Frontend\TaskController::class, 'reComplete'])->name('task.reComplete');
+    Route::get('/{id?}/reComplete', [\App\Http\Controllers\Frontend\TaskController::class, 'reComplete'])->name('task.reComplete');
 });

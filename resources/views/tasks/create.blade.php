@@ -10,27 +10,42 @@
                 <!-- Display Validation Errors -->
 
                 <!-- New Task Form -->
-                <form action="{{ route('task.store')}}" method="POST" class="form-horizontal">
-                    {{ csrf_field() }}
+                <form action="{{ route('task.store') }}" method="POST" class="form-horizontal">
+                {{ csrf_field() }}
 
-                    <!-- Task Name -->
+                <!-- Task Name -->
                     <div class="form-group">
                         <label for="task-name" class="col-sm-3 control-label">Tên công việc</label>
 
                         <div class="col-sm-6">
                             <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-name" class="col-sm-3 control-label">Nội dung</label>
 
+                        <div class="col-sm-6">
+                            <input type="text" name="taskcontent" id="task-name" class="form-control" value="{{ old('task') }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-name" class="col-sm-3 control-label">Ưu tiên</label>
+
+                        <div class="col-sm-6">
+                            <select name="priority" id="task-name" class="form-control">
+                                <option value="0">Bình thường</option>
+                                <option value="1">Quan Trọng</option>
+                                <option value="2">Khẩn cấp</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="task-name" class="col-sm-3 control-label">Deadline</label>
 
                         <div class="col-sm-6">
-                            <input type="text" name="text" id="task-name" class="form-control" value="{{ old('task') }}">
+                            <input type="text" name="deadline" id="task-name" class="form-control" value="{{ old('task') }}">
                         </div>
-
                     </div>
-
                     <!-- Add Task Button -->
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-6">
